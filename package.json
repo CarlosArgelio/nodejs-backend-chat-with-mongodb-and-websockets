@@ -1,0 +1,12 @@
+{
+  "name": "nodejs-backend-chat-with-mongodb-and-websockets",
+  "version": "0.1.0",
+  "description": "Un chat como telegram pero mejorado",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
