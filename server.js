@@ -20,8 +20,6 @@ router.get('/messages', function (req, res) {
   res.send('Lista de message');
 });
 router.post('/messages', function (req, res) {
-  console.log(req.query);
-  console.log(req.body);
   try {
     res.status(201).send('created');
   } catch (error) {
