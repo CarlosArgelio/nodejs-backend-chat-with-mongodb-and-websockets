@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const boom = require('@hapi/boom');
 const router = express.Router();
 
 var app = express();
@@ -18,10 +19,14 @@ router.get('/messages', function (req, res) {
   });
   res.send('Lista de message');
 });
-router.delete('/messages', function (req, res) {
+router.post('/messages', function (req, res) {
   console.log(req.query);
   console.log(req.body);
-
+  try {
+    res.status(201).send('created');
+  } catch (error) {
+    res.status(boom.badRequest().send(error))
+  }
   res.send('Eliminar message');
 });
 
