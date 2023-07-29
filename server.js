@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const boom = require('@hapi/boom');
 const router = express.Router();
 
+const response = require('./network/response');
+
 var app = express();
 const port = 3000
 
@@ -17,15 +19,16 @@ router.get('/messages', function (req, res) {
   res.header({
     "custom-header": "custom-value"
   });
-  res.send('Lista de message');
+  // res.send('Lista de message');
+  response.success(req, res, 'Lista de message');
 });
 router.post('/messages', function (req, res) {
   try {
-    res.status(201).send('created');
+    // res.status(201).send('created');
+    response.success(req, res, 'created', 201);
   } catch (error) {
     res.status(boom.badRequest().send(error))
   }
-  res.send('Eliminar message');
 });
 
 // app.use('/', function (req, res) {
