@@ -12,6 +12,10 @@ router.get('/', function (req, res) {
   res.send('Hello World');
 });
 router.get('/messages', function (req, res) {
+  console.log(req.headers);
+  res.header({
+    "custom-header": "custom-value"
+  });
   res.send('Lista de message');
 });
 router.delete('/messages', function (req, res) {
