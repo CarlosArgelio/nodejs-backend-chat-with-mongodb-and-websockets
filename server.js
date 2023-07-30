@@ -23,11 +23,11 @@ router.get('/messages', function (req, res) {
   response.success(req, res, 'Lista de message');
 });
 router.post('/messages', function (req, res) {
-  try {
-    // res.status(201).send('created');
-    response.success(req, res, 'created', 201);
-  } catch (error) {
-    res.status(boom.badRequest().send(error))
+  console.log(req.query);
+  if (req.query.error == 'true') {
+    response.error(req, res, 'Error en el mensaje', 400, 'error simulado');
+  } else {
+    response.success(req, res, 'Mensaje guardado', 201);
   }
 });
 

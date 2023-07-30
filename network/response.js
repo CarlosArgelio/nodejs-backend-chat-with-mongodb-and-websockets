@@ -1,3 +1,5 @@
+
+
 exports.success = function (req, res, message, status) {
     res.status(status || 200).send({
         error: '',
@@ -5,7 +7,8 @@ exports.success = function (req, res, message, status) {
     });
 }
 
-exports.error = function (req, res, message, status) {
+exports.error = function (req, res, message, status, details) {
+  console.error('[ERROR] ' + req.originalUrl + ' ' + message + ' ' + details)
   res.status(status || 200).send({
     error: message,
     body: ''
