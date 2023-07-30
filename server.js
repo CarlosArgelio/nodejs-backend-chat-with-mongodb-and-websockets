@@ -31,9 +31,7 @@ router.post('/messages', function (req, res) {
   }
 });
 
-// app.use('/', function (req, res) {
-//     res.send('Hello World');
-// });
+app.use('/app', express.static('public'));
 
 app.listen(port);
 console.log(`Server started on port ${port}`);
