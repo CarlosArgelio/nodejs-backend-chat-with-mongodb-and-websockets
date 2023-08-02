@@ -3,7 +3,6 @@ const store = require('./store');
 function addMessage(user, message) {
   return new Promise((resolve, reject) => {
     if (!user || !message) {
-      console.error('[messageController] No hay usuario o mensaje');
       return reject('Los datos son incorrectos');
     }
     const fullmessage = {
@@ -18,6 +17,7 @@ function addMessage(user, message) {
 }
 
 function getMessages(filterUser) {
+  // eslint-disable-next-line no-unused-vars
   return new Promise((resolve, reject) => {
     resolve(store.list(filterUser));
   });

@@ -26,7 +26,7 @@ function addMessage(message) {
 // }
 
 function getMessages(filterUser) {
-  // eslint-disable-next-line no-async-promise-executor
+  // eslint-disable-next-line no-async-promise-executor, no-unused-vars
   return new Promise(async (resolve, reject) => {
     let filter = {};
     if (filterUser !== null) {
