@@ -24,9 +24,11 @@ function getMessages() {
 }
 
 function updateMessage(id, message) {
-  return new Promise( async (resolve, reject) => {
+  // eslint-disable-next-line no-async-promise-executor
+  return new Promise(async (resolve, reject) => {
     if (!id || !message) {
-      return reject('Invalid data');
+      reject('Invalid data');
+      return false;
     }
     const result = await store.updateText(id, message);
     resolve(result);

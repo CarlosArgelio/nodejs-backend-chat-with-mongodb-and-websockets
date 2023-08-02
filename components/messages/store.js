@@ -30,13 +30,12 @@ async function getMessages() {
   return messages;
 }
 
-async function updateMessage(id, message) {
+async function updateText(id, message) {
   const foundMessage = await Model.findOne({
     _id: id
   });
 
   foundMessage.message = message;
-  foundMessage.save();
   const newMessage = await foundMessage.save();
   return newMessage;
 }
@@ -44,7 +43,7 @@ async function updateMessage(id, message) {
 module.exports = {
   add: addMessage,
   list: getMessages,
-  updateText: updateMessage
+  updateText: updateText
   //get
   //delete
 };
