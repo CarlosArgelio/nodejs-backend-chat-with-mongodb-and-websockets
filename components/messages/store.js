@@ -5,13 +5,36 @@ function addMessage(message) {
   myMessage.save();
 }
 
-async function getMessages(filterUser) {
-  let filter = {};
-  if (filterUser !== null) {
-    filter = { user: filterUser };
-  }
-  const messages = await Model.find(filter)
-  return messages;
+// DECRECATED
+// async function getMessages(filterUser) {
+//   return new Promise((resolve, reject) => {
+//     let filter = {};
+//     if (filterUser !== null) {
+//       filter = { user: filterUser };
+//     }
+//     Model.find(filter)
+//       .populate('user')
+//       .exec((error, populated) => {
+//         if (error) {
+//           reject(error);
+//           return false;
+//         }
+//         resolve(populated);
+//         return true;
+//       });
+//   });
+// }
+
+function getMessages(filterUser) {
+  // eslint-disable-next-line no-async-promise-executor
+  return new Promise(async (resolve, reject) => {
+    let filter = {};
+    if (filterUser !== null) {
+      filter = { user: filterUser };
+    }
+    const populated = await Model.find(filter).populate('user');
+    resolve(populated);
+  });
 }
 
 async function updateText(id, message) {
