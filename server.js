@@ -7,16 +7,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const socket = require('./socket');
 const db = require('./db');
-const { port } = require('./config/config');
+const { config } = require('./config/config');
 
-
-const user = encodeURIComponent('palaciosrcarlosa2')
-const password = encodeURIComponent('AIWrO0oyuVtsVEDy')
-const cluster = 'cluster0.2ez0s8x.mongodb.net'
-const nameCollection = 'messages'
-const uri = `mongodb+srv://${user}:${password}@${cluster}/${nameCollection}`
-
-db(uri)
+db(config.dbUrl)
 
 
 const router = require('./network/routers');
@@ -29,8 +22,8 @@ socket.connect(server);
 router(app);
 
 
-app.use('/app', express.static('public'));
+app.use('/' + config.publicRoute, express.static('public'));
 
-server.listen(port, function() {
-  console.log(`Server started on port ${port}`);
+server.listen(config.port, function() {
+  console.log(`Server started on port ${config.port}`);
 });
