@@ -8,7 +8,7 @@ exports.success = function (req, res, message, status) {
 }
 
 exports.error = function (req, res, message, status, details) {
-  console.error('[ERROR] ' + req.status + ' ' + req.originalUrl + ' ' + message + ' ' + details)
+  console.error('[ERROR] ' + ' | ' + req.originalUrl + ' | ' + message + ' | ' + details)
   console.group('[REQUEST]')
     console.log(req.body)
   res.status(status || 200).send({
