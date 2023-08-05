@@ -2,11 +2,12 @@ const express = require('express');
 var app = express();
 const server = require('http').Server(app);
 
+const cors = require('cors');
+
 const bodyParser = require('body-parser');
 const socket = require('./socket');
 const db = require('./db');
 const { port } = require('./config/config');
-
 
 
 const user = encodeURIComponent('palaciosrcarlosa2')
@@ -19,6 +20,8 @@ db(uri)
 
 
 const router = require('./network/routers');
+
+app.use(cors());
 app.use(bodyParser.json());
 
 socket.connect(server);
