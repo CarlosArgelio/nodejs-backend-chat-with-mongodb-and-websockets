@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const { port } = require('./config/config');
 
 const db = require('./db');
 
@@ -14,7 +15,6 @@ const uri = `mongodb+srv://${user}:${password}@${cluster}/${nameCollection}`
 db(uri)
 
 var app = express();
-const port = 3001
 
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));

@@ -1,14 +1,23 @@
 const store = require('./store');
+const  { port }  = require('../../config/config')
 
-function addMessage(user, message) {
+function addMessage(chat, user, message, file) {
   return new Promise((resolve, reject) => {
-    if (!user || !message) {
+    if (!chat ||!user || !message) {
       return reject('Los datos son incorrectos');
     }
+
+    let fileUrl = '';
+    if ( file ) {
+      fileUrl = `http://localhost:${port}/app/files/${file.filename}`;
+    }
+
     const fullmessage = {
+      'chat': chat,
       'user': user,
       'message': message,
-      'date': new Date()
+      'date': new Date(),
+      'file': fileUrl,
     };
 
     store.add(fullmessage);
