@@ -1,10 +1,13 @@
 const express = require('express');
+var app = express();
+const server = require('http').Server(app);
+
 const bodyParser = require('body-parser');
+const socket = require('./socket');
+const db = require('./db');
 const { port } = require('./config/config');
 
-const db = require('./db');
 
-const router = require('./network/routers');
 
 const user = encodeURIComponent('palaciosrcarlosa2')
 const password = encodeURIComponent('AIWrO0oyuVtsVEDy')
@@ -14,16 +17,17 @@ const uri = `mongodb+srv://${user}:${password}@${cluster}/${nameCollection}`
 
 db(uri)
 
-var app = express();
 
+const router = require('./network/routers');
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(router);
+
+socket.connect(server);
 
 router(app);
 
 
 app.use('/app', express.static('public'));
 
-app.listen(port);
-console.log(`Server started on port ${port}`);
+server.listen(port, function() {
+  console.log(`Server started on port ${port}`);
+});
